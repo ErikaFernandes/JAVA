@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+ 
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    
+    
+    
+    
+	<title>A Challenge For You</title>
+	
+</head>
+
+	<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+	
+		   <nav class="navbar navbar-default navbar-fixed-top">
+			  <div class="container">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>                        
+			      </button>
+			      <a class="navbar-brand" th:href="@{/}" id="index">A Challenge For You</a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="myNavbar">
+			      <ul class="nav navbar-nav navbar-right">
+			        <li><a th:href="@{/mychallenge}">I WANT A CHALLENGE</a></li>
+			        <li><a th:href="@{/createnewchallenge}">I WANNA SAVE A NEW CHALLENGE </a></li>
+			        <li><a th:href="@{/getchallengelist}"> CHALLENGE LIST </a></li>
+			        <li><a th:href="@{/getTodayList}"> TODAY </a></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+				
+				 
+				 <div class="container-fluid">
+				  <div class="row">
+				    <div>
+						<section class="aw-layout-content  js-content" layout:fragment="content">
+						</section>
+					</div>    
+				  </div>
+				</div>
+
+	</body>
+</html>
