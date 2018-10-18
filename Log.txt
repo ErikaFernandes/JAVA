@@ -1,0 +1,2 @@
+Date: 2018-10-17  -  Message: java.lang.ArithmeticException: / by zero 
+Date: 2018-10-17  -  Message: java.lang.ArithmeticException: / by zero 

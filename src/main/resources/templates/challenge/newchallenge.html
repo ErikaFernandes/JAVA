@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/root-layout}">
+  <head>
+</head>
+
+<body>
+ <section layout:fragment="content">
+	<div align="center" id="new-Challenge">
+		<h2>Save a new Challenge for me</h2>
+		<form method="POST" th:object="${challenge}" th:action="@{/savemychallenge}">
+		    <div class="alert  alert-danger  alert-dismissible" role="alert"
+					th:if="${#fields.hasAnyErrors()}">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+
+					<div th:each="erro: ${#fields.detailedErrors()}">
+						<i class="fa fa-exclamation-circle"></i>
+						
+						<span th:text="${erro.message}">Mensagem erro.</span>
+					</div>
+				</div>
+				<div class="alert  alert-success" th:if="${!#strings.isEmpty(msg)}">
+					<i class="fa fa-check-circle"></i>
+
+					<span th:text="${msg}">Mensagem sucesso!</span>
+				</div>
+		    <div class="form-group">
+				<label for="name">Challenge name : </label>
+				
+				<input id="name" type="text" th:field="*{name}" autocomplete="off" />	
+		    </div>
+		    <div class="form-group">
+				<label for="desc">Challenge description : </label>
+				<textarea rows="5" cols="60" id="description" th:field="*{description}"></textarea> <br><br>
+			</div>
+			<div class="form-group">
+			    <label for="type">Challenge Type : </label>
+				<select id="type" 
+								th:field="*{type}" >
+									<option value="">Select the type</option>
+									<option th:each="type: ${typeChallenge}"
+											th:value="${type}"
+											th:text="#{|Type.${type}|}">Opção 1</option>
+				</select>
+			</div>
+			<div class="form-group">
+			    <label for="status">Challenge Status : </label>
+				<select id="status"
+								th:field="*{status}" >
+									<option value="">Select the status</option>
+									<option th:each="status: ${statusChallenge}"
+											th:value="${status}"
+											th:text="#{|Status.${status}|}">Opção 1</option>
+								</select>
+			 </div>		
+								
+								<button type="submit" class="btn btn-default">Save my challenge</button>
+								
+								
+				
+		</form>
+		
+	</div>
+ </section>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/root-layout}">
+  <head>
+  
+</head>
+
+<body>
+ <section layout:fragment="content">
+	<div align="center">
+		<h2>Challenge List </h2>
+		 <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Edit Action</th>
+        <th>Delete Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  th:each="challenge: ${challenges}">
+        <td th:text="${challenge.id}"></td>
+        <td th:text="${challenge.name}"></td>
+        <td th:text="${challenge.description}"></td>
+        <td th:text="${challenge.status}"></td>
+        <td th:text="${challenge.type}"></td>
+        <td>
+       		<a th:href="@{/edit{id}(id=${challenge.id})}">
+				<button type="button" class="btn btn-success">
+			         EDIT
+				</button>
+			</a> 
+	    
+        </td>
+        <td>
+           <form method="POST" 
+			th:onsubmit="'return confirm(\'Do you really want to delete ' + ${challenge.name} + '?\');'"
+			th:action="@{/deletebyid{id}(id=${challenge.id})}">
+			
+				<input type="hidden" name="_method" value="DELETE" />
+					<button type="submit" class="btn btn-danger">
+						Delete
+					</button>
+		   </form>
+        </td>
+      </tr>
+     
+    </tbody>
+  </table>
+		
+		
+	</div>
+		
+ </section>
+</body>
+</html>

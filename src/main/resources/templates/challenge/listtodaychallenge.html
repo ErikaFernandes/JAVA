@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/root-layout}">
+  <head>
+</head>
+
+<body>
+ <section layout:fragment="content">
+ <span th:text="${msg}"></span>
+				<h1>TODAY</h1>
+			       <table class="table table-hover" th:if="${challengesToday != null and challengesToday.size() gt 0}">
+			    <thead>
+			      <tr>
+			        <th>Date</th>
+			        <th>Challenge (Task) Name</th>
+			        <th>Status</th>
+			        <th>Action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr th:each="challengeT: ${challengesToday}">
+			      <td th:text="${challengeT.date}"></td>
+			        <td th:text="${challengeT.name}"></td>
+			        <td th:text="${challengeT.status}"></td>
+			        <td th:if="${#strings.toString(challengeT.status)} == 'PROGRESS'">
+			        	<a th:href="@{/alterStatusCalendarChallenge/{id}/{name}/{date}/{idch} (id=${challengeT.id}, name=${challengeT.name}, date=${challengeT.date}, idch=${challengeT.idChallenge})}">
+			        		<button type="button" class="btn btn-secondary">Mark as Done</button>
+			        	</a>
+			        </td>
+			        <td th:if="${#strings.toString(challengeT.status)} != 'PROGRESS'">
+			        	<span class="glyphicon glyphicon-ok"></span>
+			        </td>
+			      </tr>
+			    </tbody>
+			  </table>
+		<span th:if="${challengesToday == null or challengesToday.size() eq 0}"> You don't have challenges in progress or done today</span>
+ </section>
+</body>
+</html>
